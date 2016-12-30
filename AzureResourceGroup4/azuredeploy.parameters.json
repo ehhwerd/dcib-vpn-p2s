@@ -1,0 +1,21 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "edwardadmin"
+    },
+    "domainName": {
+      "value": "edwardsdomain.local"
+    },
+    "dnsPrefix": {
+      "value": "edwardsdomain"
+    },
+      "adminPassword": {
+          "value": "edwardisc00l"
+      },
+      "_artifactsLocation": {
+          "value": "C:\\\\Users\\\\Edward\\\\Documents\\\\visual studio 2015\\\\Projects\\\\AzureResourceGroup4\\\\AzureResourceGroup4"
+      }
+  }
+}
