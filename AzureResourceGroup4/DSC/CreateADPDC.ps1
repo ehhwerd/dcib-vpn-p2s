@@ -88,6 +88,13 @@
             SysvolPath = "F:\SYSVOL"
 	        DependsOn = "[WindowsFeature]ADDSInstall"
         } 
+		
+		# Optional GUI tools            
+        WindowsFeature ADDSTools            
+        {             
+            Ensure = "Present"             
+            Name = "RSAT-ADDS"             
+        }    
 
         LocalConfigurationManager 
         {
