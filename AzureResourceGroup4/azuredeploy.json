@@ -341,9 +341,23 @@
           }
         }
       }
-    }
+    },
     {
+      "apiVersion": "2015-01-01",
+      "name": "linkedTemplate",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/vpn-p2s.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "StorageAccountName": { "value": "[parameters('StorageAccountName')]" },
+          "vnetAddressPrefix": { "value": "[parameters('adSubnetAddressPrefix')]" },
 
+        }
+      }
     }
   ]
 }
