@@ -349,12 +349,16 @@
       "properties": {
         "mode": "incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/vpn-p2s.json",
+          "uri": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/vpn-s2s-deploy.json",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
           "StorageAccountName": { "value": "[parameters('StorageAccountName')]" },
           "vnetAddressPrefix": { "value": "[parameters('adSubnetAddressPrefix')]" },
+          "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
+          "virtualNetworkAddressRange": { "value": "[parameters('virtualNetworkAddressRange')]" },
+          "adSubnetName": { "value": "[parameters('adSubnetName')]" },
+          "adSubnetAddressPrefix": { "value": "[parameters('adSubnetAddressPrefix')]" },
 
         }
       }
