@@ -353,11 +353,11 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "vnetAddressPrefix": { "value": "[parameters('adSubnetAddressPrefix')]" },
-          "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
-          "virtualNetworkAddressRange": { "value": "[parameters('virtualNetworkAddressRange')]" },
-          "adSubnetName": { "value": "[parameters('adSubnetName')]" },
-          "adSubnetAddressPrefix": { "value": "[parameters('adSubnetAddressPrefix')]" },
+          "vnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" },
+          "virtualNetworkName": { "value": "[variables('virtualNetworkName')]" },
+          "virtualNetworkAddressRange": { "value": "[variables('virtualNetworkAddressRange')]" },
+          "adSubnetName": { "value": "[variables('adSubnetName')]" },
+          "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" },
 
         }
       }
