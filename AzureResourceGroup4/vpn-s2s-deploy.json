@@ -34,25 +34,25 @@
         "description": "CIDR block representing the address space of the OnPremise VPN network's Subnet"
       }
     },
-    "virtualNetworkName2": {
+    "virtualNetworkName": {
       "type": "string",
       "metadata": {
         "description": "Arbitrary name for the Azure Virtual Network"
       }
     },
-    "virtualNetworkAddressRange2": {
+    "virtualNetworkAddressRange": {
       "type": "string",
       "metadata": {
         "description": "CIDR block representing the address space of the Azure VNet"
       }
     },
-    "adSubnetName2": {
+    "adSubnetName": {
       "type": "string",
       "metadata": {
         "description": "Arbitrary name for the Azure Subnet"
       }
     },
-    "adSubnetAddressPrefix2": {
+    "adSubnetAddressPrefix": {
       "type": "string",
       "metadata": {
         "description": "CIDR block for VM subnet, subset of virtualNetworkAddressRange address space"
@@ -107,9 +107,9 @@
     }
   },
   "variables": {
-    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName2'))]",
+    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "gatewaySubnetRef": "[concat(variables('vnetID'),'/subnets/','GatewaySubnet')]",
-    "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('adSubnetName2'))]",
+    "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('adSubnetName'))]",
     "api-version": "2015-06-15"
   },
   "resources": [
@@ -151,19 +151,19 @@
     {
       "apiVersion": "[variables('api-version')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('virtualNetworkName2')]",
+      "name": "[parameters('virtualNetworkName')]",
       "location": "[resourceGroup().location]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[parameters('virtualNetworkAddressRange2')]"
+            "[parameters('virtualNetworkAddressRange')]"
           ]
         },
         "subnets": [
           {
-            "name": "[parameters('adSubnetName2')]",
+            "name": "[parameters('adSubnetName')]",
             "properties": {
-              "addressPrefix": "[parameters('adSubnetAddressPrefix2')]"
+              "addressPrefix": "[parameters('adSubnetAddressPrefix')]"
             }
           },
           {
@@ -191,7 +191,7 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Network/publicIPAddresses/', parameters('gatewayPublicIPName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName2'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
       ],
       "properties": {
         "ipConfigurations": [
