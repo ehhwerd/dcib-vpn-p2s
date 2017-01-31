@@ -353,7 +353,6 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "StorageAccountName": { "value": "[parameters('StorageAccountName')]" },
           "vnetAddressPrefix": { "value": "[parameters('adSubnetAddressPrefix')]" },
           "virtualNetworkName": { "value": "[parameters('virtualNetworkName')]" },
           "virtualNetworkAddressRange": { "value": "[parameters('virtualNetworkAddressRange')]" },
