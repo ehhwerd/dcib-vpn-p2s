@@ -353,7 +353,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "vnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" },
+          "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" },
           "virtualNetworkName": { "value": "[variables('virtualNetworkName')]" },
           "virtualNetworkAddressRange": { "value": "[variables('virtualNetworkAddressRange')]" },
           "adSubnetName": { "value": "[variables('adSubnetName')]" },
