@@ -34,25 +34,25 @@
         "description": "CIDR block representing the address space of the OnPremise VPN network's Subnet"
       }
     },
-    "virtualNetworkName": {
+    "virtualNetworkName2": {
       "type": "string",
       "metadata": {
         "description": "Arbitrary name for the Azure Virtual Network"
       }
     },
-    "virtualNetworkAddressRange": {
+    "virtualNetworkAddressRange2": {
       "type": "string",
       "metadata": {
         "description": "CIDR block representing the address space of the Azure VNet"
       }
     },
-    "adSubnetName": {
+    "adSubnetName2": {
       "type": "string",
       "metadata": {
         "description": "Arbitrary name for the Azure Subnet"
       }
     },
-    "adSubnetAddressPrefix": {
+    "adSubnetAddressPrefix2": {
       "type": "string",
       "metadata": {
         "description": "CIDR block for VM subnet, subset of virtualNetworkAddressRange address space"
