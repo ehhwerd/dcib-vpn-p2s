@@ -107,9 +107,9 @@
     }
   },
   "variables": {
-    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName2'))]",
     "gatewaySubnetRef": "[concat(variables('vnetID'),'/subnets/','GatewaySubnet')]",
-    "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('adSubnetName'))]",
+    "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('adSubnetName2'))]",
     "api-version": "2015-06-15"
   },
   "resources": [
@@ -151,19 +151,19 @@
     {
       "apiVersion": "[variables('api-version')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('virtualNetworkName')]",
+      "name": "[parameters('virtualNetworkName2')]",
       "location": "[resourceGroup().location]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[parameters('virtualNetworkAddressRange')]"
+            "[parameters('virtualNetworkAddressRange2')]"
           ]
         },
         "subnets": [
           {
-            "name": "[parameters('adSubnetName')]",
+            "name": "[parameters('adSubnetName2')]",
             "properties": {
-              "addressPrefix": "[parameters('adSubnetAddressPrefix')]"
+              "addressPrefix": "[parameters('adSubnetAddressPrefix2')]"
             }
           },
           {
@@ -191,7 +191,7 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Network/publicIPAddresses/', parameters('gatewayPublicIPName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName2'))]"
       ],
       "properties": {
         "ipConfigurations": [
