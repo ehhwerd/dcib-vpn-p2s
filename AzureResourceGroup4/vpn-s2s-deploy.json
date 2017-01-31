@@ -100,7 +100,7 @@
     },
     "sharedKey": {
       "type": "securestring",
-      "defaultValue": "1234567890"
+      "defaultValue": "1234567890",
       "metadata": {
         "description": "Shared key (PSK) for IPSec tunnel"
       }
