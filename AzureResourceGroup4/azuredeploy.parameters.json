@@ -12,10 +12,7 @@
       "value": "edwardsdomain"
     },
       "adminPassword": {
-          "value": "edwardisc00l"
-      },
-      "_artifactsLocation": {
-          "value": "https://github.com/ehhwerd/dcib/tree/master/AzureResourceGroup4"
+          "value": "Passw0rd1234!"
       }
   }
 }
