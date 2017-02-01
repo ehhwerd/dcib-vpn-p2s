@@ -344,14 +344,15 @@
     },
     {
       "apiVersion": "2015-01-01",
-      "name": "VPNDeploy",
+
+      "name": "S2S-VPN-Deployment",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
-        "Microsoft.Resources/deployments/UpdateVNetDNS"
+        "[resourceId('Microsoft.Resources/deployments', 'VNet')]"
       ],
 
       "properties": {
-        "mode": "incremental",
+        "mode": "Incremental",
         "templateLink": {
           "uri": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/vpn-s2s-deploy.json",
           "contentVersion": "1.0.0.0"
@@ -361,6 +362,7 @@
           "virtualNetworkAddressRange": { "value": "[variables('virtualNetworkAddressRange')]" },
           "adSubnetName": { "value": "[variables('adSubnetName')]" },
           "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" }
+
 
         }
       }
