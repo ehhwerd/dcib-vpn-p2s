@@ -347,7 +347,7 @@
       "name": "VPNDeploy",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
-        "Microsoft.Resources/deployments/VNet"
+        "Microsoft.Resources/deployments/UpdateVNetDNS"
       ],
 
       "properties": {
