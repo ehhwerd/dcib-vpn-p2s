@@ -344,11 +344,13 @@
     },
     {
       "apiVersion": "2015-01-01",
+
       "name": "S2S-VPN-Deployment",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'VNet')]"
       ],
+
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -360,6 +362,8 @@
           "virtualNetworkAddressRange": { "value": "[variables('virtualNetworkAddressRange')]" },
           "adSubnetName": { "value": "[variables('adSubnetName')]" },
           "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" }
+
+
         }
       }
     }
