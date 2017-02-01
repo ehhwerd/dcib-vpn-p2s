@@ -348,7 +348,7 @@
       "name": "S2S-VPN-Deployment",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/deployments', 'VNet')]"
+        "[resourceId('Microsoft.Resources/deployments', 'UpdateVNetDNS')]"
       ],
 
       "properties": {
