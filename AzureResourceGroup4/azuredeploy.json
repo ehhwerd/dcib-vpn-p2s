@@ -344,8 +344,12 @@
     },
     {
       "apiVersion": "2015-01-01",
-      "name": "linkedTemplate",
+      "name": "VPNDeploy",
       "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/VNet"
+      ],
+
       "properties": {
         "mode": "incremental",
         "templateLink": {
@@ -356,7 +360,7 @@
           "virtualNetworkName": { "value": "[variables('virtualNetworkName')]" },
           "virtualNetworkAddressRange": { "value": "[variables('virtualNetworkAddressRange')]" },
           "adSubnetName": { "value": "[variables('adSubnetName')]" },
-          "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" },
+          "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" }
 
         }
       }
