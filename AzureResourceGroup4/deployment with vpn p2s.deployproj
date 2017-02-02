@@ -27,6 +27,7 @@
   <ItemGroup>
     <None Include="azuredeploy.json" />
     <None Include="azuredeploy.parameters.json" />
+    <None Include="DSC\InstallADC.zip" />
     <None Include="vpn-s2s-deploy.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
