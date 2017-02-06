@@ -328,34 +328,34 @@
         //      }
         //    }        
         //},
-          {
-              "name": "Microsoft.Powershell.DSC",
-              "type": "extensions",
-              "location": "[resourceGroup().location]",
-              "apiVersion": "2016-03-30",
-              "dependsOn": [
-                  "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
-              ],
-              "tags": {
-                  "displayName": "ADConnect"
-              },
-              "properties": {
-                  "publisher": "Microsoft.Powershell",
-                  "type": "DSC",
-                  "typeHandlerVersion": "2.9",
-                  "autoUpgradeMinorVersion": true,
-                  "settings": {
-                    "configuration": {
-                      "url": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/ADConnect.zip",
-                      "script": "ADConnect.ps1",
-                      "function": "Main"
-                    },
-                      "configurationArguments": {
-                          "nodeName": "[variables('adVMName')]"
-                      }
-                  }                  
-              }
-          }
+          //{
+          //    "name": "Microsoft.Powershell.DSC",
+          //    "type": "extensions",
+          //    "location": "[resourceGroup().location]",
+          //    "apiVersion": "2016-03-30",
+          //    "dependsOn": [
+          //        "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
+          //    ],
+          //    "tags": {
+          //        "displayName": "ADConnect"
+          //    },
+          //    "properties": {
+          //        "publisher": "Microsoft.Powershell",
+          //        "type": "DSC",
+          //        "typeHandlerVersion": "2.9",
+          //        "autoUpgradeMinorVersion": true,
+          //        "settings": {
+          //          "configuration": {
+          //            "url": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/ADConnect.zip",
+          //            "script": "ADConnect.ps1",
+          //            "function": "Main"
+          //          },
+          //            "configurationArguments": {
+          //                "nodeName": "[variables('adVMName')]"
+          //            }
+          //        }                  
+          //    }
+          //}
 
 
       ]
