@@ -65,6 +65,18 @@
         "Standard_D5_v2"
       ]
     },
+      "_artifactsLocation": {
+          "type": "string",
+          "metadata": {
+              "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
+          }
+      },
+      "_artifactsLocationSasToken": {
+          "type": "securestring",
+          "metadata": {
+              "description": "Auto-generated token to access _artifactsLocation"
+          }
+      }
     
     
   },
@@ -82,7 +94,9 @@
     "adSubnetAddressPrefix": "10.0.0.0/24",
     "publicIPAddressName": "adPublicIP",
     "adAvailabilitySetName": "adAvailabiltySet",
-    "adLBName": "adLoadBalancer"
+    "adLBName": "adLoadBalancer",
+      "ADConnectArchiveFolder": "DSC",
+      "ADConnectArchiveFileName": "ADConnect.zip"
   },
   "resources": [
     {
@@ -307,25 +321,56 @@
           }
         },
 
-        {
-          "type": "extensions",
-          "name": "GetAndInstallADConnect",
-          "apiVersion": "2015-06-15",
-          "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
-          ],
-          "properties": {
-            "publisher": "Microsoft.Powershell",
-            "type": "DSC",
-            "typeHandlerVersion": "2.19",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "ModulesUrl": "https://github.com/ehhwerd/dcib/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
-              "ConfigurationFunction": "InstallADC.ps1\\GetADConnect"
+        //{
+        //  "type": "extensions",
+        //  "name": "GetAndInstallADConnect",
+        //  "apiVersion": "2015-06-15",
+        //  "location": "[resourceGroup().location]",
+        //  "dependsOn": [
+        //    "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
+        //  ],
+        //  "properties": {
+        //    "publisher": "Microsoft.Powershell",
+        //    "type": "DSC",
+        //    "typeHandlerVersion": "2.19",
+        //    "autoUpgradeMinorVersion": true,
+        //    "settings": {
+        //      "ModulesUrl": "https://github.com/ehhwerd/dcib/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
+        //      "ConfigurationFunction": "InstallADC.ps1\\GetADConnect"
+        //      }
+        //    }        
+        //},
+          {
+              "name": "Microsoft.Powershell.DSC",
+              "type": "extensions",
+              "location": "[resourceGroup().location]",
+              "apiVersion": "2016-03-30",
+              "dependsOn": [
+                  "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
+              ],
+              "tags": {
+                  "displayName": "ADConnect"
+              },
+              "properties": {
+                  "publisher": "Microsoft.Powershell",
+                  "type": "DSC",
+                  "typeHandlerVersion": "2.9",
+                  "autoUpgradeMinorVersion": true,
+                  "settings": {
+                      "configuration": {
+                          "url": "[concat(parameters('_artifactsLocation'), '/', variables('ADConnectArchiveFolder'), '/', variables('ADConnectArchiveFileName'))]",
+                          "script": "ADConnect.ps1",
+                          "function": "Main"
+                      },
+                      "configurationArguments": {
+                          "nodeName": "[variables('adVMName')]"
+                      }
+                  },
+                  "protectedSettings": {
+                      "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]"
+                  }
               }
-            }        
-        }
+          }
 
 
       ]
