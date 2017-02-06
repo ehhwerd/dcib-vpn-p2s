@@ -357,18 +357,15 @@
                   "typeHandlerVersion": "2.9",
                   "autoUpgradeMinorVersion": true,
                   "settings": {
-                      "configuration": {
-                          "url": "[concat(parameters('_artifactsLocation'), '/', variables('ADConnectArchiveFolder'), '/', variables('ADConnectArchiveFileName'))]",
-                          "script": "ADConnect.ps1",
-                          "function": "Main"
-                      },
+                    "configuration": {
+                      "url": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/DSC/ADConnect.ps1",
+                      "script": "ADConnect.ps1",
+                      "function": "Main"
+                    },
                       "configurationArguments": {
                           "nodeName": "[variables('adVMName')]"
                       }
-                  },
-                  "protectedSettings": {
-                      "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]"
-                  }
+                  }                  
               }
           }
 
