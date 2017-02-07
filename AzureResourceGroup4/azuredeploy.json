@@ -309,55 +309,54 @@
           }
         },
 
-        {
-          "type": "extensions",
-          "name": "GetAndInstallADConnect",
-          "apiVersion": "2015-06-15",
-          "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[concat('Microsoft.Compute/virtualMachines/', variables('adVMName'))]",
-            "[concat('Microsoft.Compute/virtualMachines/', variables('adVMName'),'/extensions/CreateADForest')]"
-            //"[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('CreateADForest')]"
-          ],
-          "properties": {
-            "publisher": "Microsoft.Powershell",
-            "type": "DSC",
-            "typeHandlerVersion": "2.19",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "ModulesUrl": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
-              "ConfigurationFunction": "InstallADC.ps1\\GetADConnect"
-            }
-            }        
-        }
-          //{
-          //    "name": "Microsoft.Powershell.DSC",
-          //    "type": "extensions",
-          //    "location": "[resourceGroup().location]",
-          //    "apiVersion": "2016-03-30",
-          //    "dependsOn": [
-          //        "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
-          //    ],
-          //    "tags": {
-          //        "displayName": "ADConnect"
-          //    },
-          //    "properties": {
-          //        "publisher": "Microsoft.Powershell",
-          //        "type": "DSC",
-          //        "typeHandlerVersion": "2.9",
-          //        "autoUpgradeMinorVersion": true,
-          //        "settings": {
-          //          "configuration": {
-          //            "url": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/ADConnect.zip",
-          //            "script": "ADConnect.ps1",
-          //            "function": "Main"
-          //          },
-          //            "configurationArguments": {
-          //                "nodeName": "[variables('adVMName')]"
-          //            }
-          //        }                  
-          //    }
-          //}
+        //{
+        //  "type": "extensions",
+        //  "name": "getandinstalladconnect",
+        //  "apiversion": "2015-06-15",
+        //  "location": "[resourcegroup().location]",
+        //  "dependson": [
+        //    "[concat('microsoft.compute/virtualmachines/', variables('advmname'))]",
+        //    "[concat('microsoft.compute/virtualmachines/', variables('advmname'),'/extensions/createadforest')]"
+        //  ],
+        //  "properties": {
+        //    "publisher": "microsoft.powershell",
+        //    "type": "dsc",
+        //    "typehandlerversion": "2.19",
+        //    "autoupgrademinorversion": true,
+        //    "settings": {
+        //      "modulesurl": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/azureresourcegroup4/dsc/installadc.zip",
+        //      "configurationfunction": "installadc.ps1\\getadconnect"
+        //    }
+        //  }
+        //}
+        //{
+        //    "name": "Microsoft.Powershell.DSC",
+        //    "type": "extensions",
+        //    "location": "[resourceGroup().location]",
+        //    "apiVersion": "2016-03-30",
+        //    "dependsOn": [
+        //        "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
+        //    ],
+        //    "tags": {
+        //        "displayName": "ADConnect"
+        //    },
+        //    "properties": {
+        //        "publisher": "Microsoft.Powershell",
+        //        "type": "DSC",
+        //        "typeHandlerVersion": "2.9",
+        //        "autoUpgradeMinorVersion": true,
+        //        "settings": {
+        //          "configuration": {
+        //            "url": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/ADConnect.zip",
+        //            "script": "ADConnect.ps1",
+        //            "function": "Main"
+        //          },
+        //            "configurationArguments": {
+        //                "nodeName": "[variables('adVMName')]"
+        //            }
+        //        }
+        //    }
+        //}
 
 
       ]
@@ -418,6 +417,27 @@
           "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" }
 
 
+        }
+      }
+    },
+    {
+      "name": "GetAndInstallADConnect",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('adVMName'))]",
+        "[concat('Microsoft.Compute/virtualMachines/', variables('adVMName'),'/extensions/CreateADForest')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/nestedtemplates/installadconnect.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "vmName": {
+            "value": "[variables('adVMName')]"
+          }
         }
       }
     }
