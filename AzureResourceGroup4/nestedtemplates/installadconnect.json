@@ -19,9 +19,11 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "ModulesUrl": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
-          "ConfigurationFunction": "InstallADC.ps1\\GetADConnect"
+          "ConfigurationFunction": "InstallADC.ps1\\GetADConnect",
+          "Properties": {
+            "adVMName": "[parameters('adVMName')]"
+          }
         }
-      }
     }
   ]
 }

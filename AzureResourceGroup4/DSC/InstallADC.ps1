@@ -1,8 +1,16 @@
 Configuration GetADConnect {
 
+param 
+   ( 
+        [Parameter(Mandatory)]
+        [String]$adVMName
+
+    )
 Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
 
-node localhost {
+VirtualMachine = $adVMName
+
+node VirtualMachine {
     Script script1
     {
         GetScript = {
