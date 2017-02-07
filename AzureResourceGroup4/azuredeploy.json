@@ -309,25 +309,25 @@
           }
         },
 
-        //{
-        //  "type": "extensions",
-        //  "name": "GetAndInstallADConnect",
-        //  "apiVersion": "2015-06-15",
-        //  "location": "[resourceGroup().location]",
-        //  "dependsOn": [
-        //    "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
-        //  ],
-        //  "properties": {
-        //    "publisher": "Microsoft.Powershell",
-        //    "type": "DSC",
-        //    "typeHandlerVersion": "2.19",
-        //    "autoUpgradeMinorVersion": true,
-        //    "settings": {
-        //      "ModulesUrl": "https://github.com/ehhwerd/dcib/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
-        //      "ConfigurationFunction": "InstallADC.ps1\\GetADConnect"
-        //      }
-        //    }        
-        //},
+        {
+          "type": "extensions",
+          "name": "GetAndInstallADConnect",
+          "apiVersion": "2015-06-15",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
+          ],
+          "properties": {
+            "publisher": "Microsoft.Powershell",
+            "type": "DSC",
+            "typeHandlerVersion": "2.19",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "ModulesUrl": "https://github.com/ehhwerd/dcib/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
+              "ConfigurationFunction": "InstallADC.ps1\\GetADConnect"
+              }
+            }        
+        }
           //{
           //    "name": "Microsoft.Powershell.DSC",
           //    "type": "extensions",
