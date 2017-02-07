@@ -291,7 +291,7 @@
             "typeHandlerVersion": "2.19",
             "autoUpgradeMinorVersion": true,
             "settings": {
-              "ModulesUrl": "https://github.com/ehhwerd/dcib/raw/master/AzureResourceGroup4/DSC/CreateADPDC.zip",
+              "ModulesUrl": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/CreateADPDC.zip",
               "ConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
               "Properties": {
                 "DomainName": "[parameters('domainName')]",
@@ -323,9 +323,9 @@
             "typeHandlerVersion": "2.19",
             "autoUpgradeMinorVersion": true,
             "settings": {
-              "ModulesUrl": "https://github.com/ehhwerd/dcib/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
+              "ModulesUrl": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
               "ConfigurationFunction": "InstallADC.ps1\\GetADConnect"
-              }
+            }
             }        
         }
           //{
