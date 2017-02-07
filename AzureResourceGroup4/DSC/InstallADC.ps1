@@ -1,5 +1,7 @@
 Configuration GetADConnect {
 
+Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
+
 node localhost {
     Script script1
     {
