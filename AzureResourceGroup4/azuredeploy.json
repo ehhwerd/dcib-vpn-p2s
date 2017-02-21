@@ -293,7 +293,7 @@
             "settings": {
               "wmfVersion": "latest",
               "configuration": {
-                "url": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/CreateADPDC.zip",
+                "url": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/DSC/CreateADPDC.zip",
                 "script": "CreateADPDC.ps1",
                 "function": "CreateADPDC"
               },
