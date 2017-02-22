@@ -384,7 +384,6 @@
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'UpdateVNetDNS')]"
       ],
-
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -396,8 +395,6 @@
           "virtualNetworkAddressRange": { "value": "[variables('virtualNetworkAddressRange')]" },
           "adSubnetName": { "value": "[variables('adSubnetName')]" },
           "adSubnetAddressPrefix": { "value": "[variables('adSubnetAddressPrefix')]" }
-
-
         }
       }
     }
