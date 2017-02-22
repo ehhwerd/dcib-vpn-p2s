@@ -320,34 +320,23 @@
         {
           "type": "extensions",
           "name": "InstallADConnect",
-          "apiVersion": "2016-03-30",
+          "apiVersion": "2015-06-15",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
           ],
           "properties": {
-            "publisher": "Microsoft.Powershell",
-            "type": "DSC",
-            "typeHandlerVersion": "2.22",
+            "publisher": "Microsoft.Compute",
+            "type": "CustomScriptExtension",
+            "typeHandlerVersion": "1.8",
             "autoUpgradeMinorVersion": true,
             "settings": {
-              "wmfVersion": "latest",
-              "configuration": {
-                "url": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/DSC/InstallADC.zip",
-                "script": "InstallADC.ps1",
-                "function": "GetADConnect"
-              },
-              "configurationArguments": {
-                "adVMName": "[variables('adVMName')]"
-              },
-              "privacy": {
-                "datacollection": "enable"
-              },
-              "advancedOptions": {
-                "forcePullAndApply": true
-              }
-            },
-            "protectedSettings": {
+              "fileUris": [
+                "url"
+                :
+                "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/InstallADConnect.ps1"
+              ],
+              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', 'InstallADConnect.ps1')]"
             }
           }
         }
