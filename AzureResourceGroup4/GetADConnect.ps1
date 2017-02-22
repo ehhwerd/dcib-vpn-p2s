@@ -1,7 +1,7 @@
 ﻿<#
 .SYNOPSIS
 
-This script downloads a nominated file and saves it in the file system at a nominated location.
+This script downloads a file from a URL provided and saves it in the file system at a nominated location.
 .DESCRIPTION
 
 More comprehensive description to go here.
@@ -23,16 +23,17 @@ Second example to go here.
 
 Param (
 		[string]$sourceUrl = "https://download.microsoft.com/download/B/0/0/B00291D0-5A83-4DE7-86F5-980BC00DE05A/AzureADConnect.msi",
-		[string]$filePath = "C:\temp\AzureADConnect.msi"
+		[string]$filePath = "C:\temp\AzureADConnect.msi",
+		[boolean]$force = $false
     )
 
 New-EventLog -LogName Application -Source "GetADConnect"
 
-$sourceUrlDetails = Invoke-WebRequest $sourceUrl -Method Head
+$sourceUrlDetails = Invoke-WebRequest $sourceUrl -Method Head -UseBasicParsing
 
 if (!($sourceUrlDetails.StatusCode -eq 200)) {
-	Write-Output "ERROR: Source file does not exist or URL provided is invalid"
-    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Error -EventId 3 -Message "Source file does not exist or URL provided is invalid"
+	Write-Output "ERROR: Source file does not exist or URL provided is invalid."
+    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Error -EventId 3 -Message "Source file does not exist or URL provided is invalid."
 	Return
 }
 
@@ -46,14 +47,15 @@ if(!(Split-Path -parent $filePath) -or !(Test-Path -pathType Container (S
     } 
 
 
-if(!(Test-Path $filePath)) {
-
-    Invoke-WebRequest $sourceUrl -Outfile $filePath
-    Write-Output ("INFORMATION: " + $sourceUrl + " downloaded to " + $filePath)
-    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Information -EventId 4 -Message ($sourceUrl + " downloaded to " + $filePath)
+if(Test-Path $filePath) {
+	if ($force) {
+		Invoke-WebRequest $sourceUrl -Outfile $filePath -UseBasicParsing
+		Write-Output ("INFORMATION: " + $sourceUrl + " downloaded to " + $filePath)
+		Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Information -EventId 4 -Message ($sourceUrl + " downloaded to " + $filePath)
+	}
+	else {
+		Write-Output "WARNING: Target file exists. No download performed."
+		Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Warning -EventId 2 -Message "Target file exists. No download performed."
     }
-else {
-    Write-Output "WARNING: Target file exists. No download performed."
-    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Warning -EventId 2 -Message "Target file exists. No download performed."
-    }
+}
     
