@@ -26,22 +26,34 @@ Param (
 		[string]$filePath = "C:\temp\AzureADConnect.msi"
     )
 
+New-EventLog -LogName Application -Source "GetADConnect"
+
+$sourceUrlDetails = Invoke-WebRequest $sourceUrl -Method Head
+
+if (!($sourceUrlDetails.StatusCode -eq 200)) {
+	Write-Output "ERROR: Source file does not exist or URL provided is invalid"
+    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Error -EventId 3 -Message "Source file does not exist or URL provided is invalid"
+	Return
+}
+
 if(!(Split-Path -parent $filePath) -or !(Test-Path -pathType Container (Split-Path -parent $filePath))) { 
 
 	# No path has been provided or the path is not a container.
       Write-Output "INFORMATION: No target path provided. Saving file to current folder."
       Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Information -EventId 1 -Message "No target path provided. Saving file to current folder."
 
-      $filePath = Join-Path $pwd (Split-Path -leaf $filePath) 
+      $filePath = Join-Path $pwd (Split-Path -leaf $filePath)
     } 
 
 
 if(!(Test-Path $filePath)) {
 
     Invoke-WebRequest $sourceUrl -Outfile $filePath
+    Write-Output ("INFORMATION: " + $sourceUrl + " downloaded to " + $filePath)
+    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Information -EventId 4 -Message ($sourceUrl + " downloaded to " + $filePath)
     }
 else {
-    Write-Output "INFORMATION: Target file exists. No download performed."
-    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Information -EventId 2 -Message "Target file exists. No download performed."
+    Write-Output "WARNING: Target file exists. No download performed."
+    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Warning -EventId 2 -Message "Target file exists. No download performed."
     }
     
