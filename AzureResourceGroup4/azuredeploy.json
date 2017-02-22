@@ -280,7 +280,7 @@
         {
           "type": "extensions",
           "name": "CreateADForest",
-          "apiVersion": "2015-06-15",
+          "apiVersion": "2016-03-30",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
@@ -291,42 +291,50 @@
             "typeHandlerVersion": "2.22",
             "autoUpgradeMinorVersion": true,
             "settings": {
-              "ModulesUrl": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/CreateADPDC.zip",
-              "ConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-              "Properties": {
-                "DomainName": "[parameters('domainName')]",
-                "AdminCreds": {
-                  "UserName": "[parameters('adminUsername')]",
-                  "Password": "PrivateSettingsRef:AdminPassword"
-                }
+              "wmfVersion": "latest",
+              "configuration": {
+                "url": "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/DSC/CreateADPDC.zip",
+                "script": "CreateADPDC.ps1",
+                "function": "CreateADPDC"
+              },
+              "configurationArguments": {
+                "DomainName": "[parameters('domainName')]"
+              },
+              "privacy": {
+                "datacollection": "enable"
+              },
+              "advancedOptions": {
+                "forcePullAndApply": true
               }
             },
             "protectedSettings": {
-              "Items": {
-                "AdminPassword": "[parameters('adminPassword')]"
+              "configurationArguments": {
+                "AdminCreds": {
+                  "UserName": "[parameters('adminUsername')]",
+                  "Password": "[parameters('adminPassword')]"
+                }
               }
             }
           }
         },
         {
           "type": "extensions",
-          "name": "GetAndInstallADConnect",
+          "name": "InstallADConnect",
           "apiVersion": "2015-06-15",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', variables('adVMName'))]"
           ],
           "properties": {
-            "publisher": "Microsoft.Powershell",
-            "type": "DSC",
-            "typeHandlerVersion": "2.22",
+            "publisher": "Microsoft.Compute",
+            "type": "CustomScriptExtension",
+            "typeHandlerVersion": "1.8",
             "autoUpgradeMinorVersion": true,
             "settings": {
-              "ModulesUrl": "https://github.com/ehhwerd/dcib-vpn-p2s/raw/master/AzureResourceGroup4/DSC/InstallADC.zip",
-              "ConfigurationFunction": "InstallADC.ps1\\GetADConnect",
-              "Properties": {
-                "adVMName": "[variables('adVMName')]"
-              }
+              "fileUris": [
+                "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/InstallADConnect.ps1"
+              ],
+              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', 'InstallADConnect.ps1')]"
             }
           }
         }
@@ -390,6 +398,6 @@
 
         }
       }
-    }    
+    }
   ]
 }
