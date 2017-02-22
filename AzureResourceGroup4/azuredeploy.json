@@ -84,7 +84,9 @@
     "adAvailabilitySetName": "adAvailabiltySet",
     "adLBName": "adLoadBalancer",
     "ADConnectArchiveFolder": "DSC",
-    "ADConnectArchiveFileName": "ADConnect.zip"
+    "ADConnectArchiveFileName": "ADConnect.zip",
+    "AADConnectSource": "https://download.microsoft.com/download/B/0/0/B00291D0-5A83-4DE7-86F5-980BC00DE05A/AzureADConnect.msi",
+    "AADConnectTargetPath" : "C:\\AzureADConnect.msi"
   },
   "resources": [
     {
@@ -334,7 +336,7 @@
               "fileUris": [
                 "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/GetADConnect.ps1"
               ],
-              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', 'GetADConnect.ps1')]"
+              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file GetADConnect.ps1 -sourceUrl ', variables('AADConnectSource'), ' -filePath ', variables('AADConnectTargetPath'))]"
             }
           }
         }
