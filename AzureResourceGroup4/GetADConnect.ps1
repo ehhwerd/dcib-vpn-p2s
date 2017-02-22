@@ -32,8 +32,8 @@ New-EventLog -LogName Application -Source "GetADConnect"
 $sourceUrlDetails = Invoke-WebRequest $sourceUrl -Method Head -UseBasicParsing
 
 if (!($sourceUrlDetails.StatusCode -eq 200)) {
-	Write-Output "ERROR: Source file does not exist or URL provided is invalid."
-    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Error -EventId 3 -Message "Source file does not exist or URL provided is invalid."
+	Write-Output "ERROR: Source file does not exist or URL provided is invalid. URL value is " + $sourceUrl
+    Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Error -EventId 3 -Message ("Source file does not exist or URL provided is invalid. URL value is " + $sourceUrl)
 	Return
 }
 
