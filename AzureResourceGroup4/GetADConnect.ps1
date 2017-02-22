@@ -47,15 +47,14 @@ if(!(Split-Path -parent $filePath) -or !(Test-Path -pathType Container (S
     } 
 
 
-if(Test-Path $filePath) {
-	if ($force) {
-		Invoke-WebRequest $sourceUrl -Outfile $filePath -UseBasicParsing
-		Write-Output ("INFORMATION: " + $sourceUrl + " downloaded to " + $filePath)
-		Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Information -EventId 4 -Message ($sourceUrl + " downloaded to " + $filePath)
-	}
-	else {
+if((Test-Path $filePath) -and (!$force)){
 		Write-Output "WARNING: Target file exists. No download performed."
 		Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Warning -EventId 2 -Message "Target file exists. No download performed."
-    }
+		Return
 }
+
+Invoke-WebRequest $sourceUrl -Outfile $filePath -UseBasicParsing
+Write-Output ("INFORMATION: " + $sourceUrl + " downloaded to " + $filePath)
+Write-EventLog -LogName Application -Source "GetADConnect" -EntryType Information -EventId 4 -Message ($sourceUrl + " downloaded to " + $filePath)
+
     
