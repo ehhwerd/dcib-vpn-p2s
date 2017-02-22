@@ -332,8 +332,6 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "url"
-                :
                 "https://raw.githubusercontent.com/ehhwerd/dcib-vpn-p2s/master/AzureResourceGroup4/InstallADConnect.ps1"
               ],
               "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', 'InstallADConnect.ps1')]"
