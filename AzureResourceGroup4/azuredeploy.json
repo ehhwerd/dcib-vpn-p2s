@@ -102,9 +102,13 @@
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[variables('adAvailabilitySetName')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2016-04-30-preview",
       "location": "[resourceGroup().location]",
-      "properties": {}
+      "properties": {
+        "managed": "true",
+        "platformUpdateDomainCount": 5,
+        "platformFaultDomainCount": 2
+      }
     },
     {
       "type": "Microsoft.Resources/deployments",
@@ -206,7 +210,7 @@
         ]
       }
     },
-{
+    {
       "apiVersion": "2016-04-30-preview",
       "type": "Microsoft.Compute/disks",
       "name": "[concat(variables('adVMName'), '-data-disk')]",
