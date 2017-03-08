@@ -25,6 +25,8 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
+    <None Include="DSC\FileServerDSC.zip" />
+    <None Include="fileserverdeploy.json" />
     <None Include="azuredeploy.json" />
     <None Include="azuredeploy.parameters.json" />
     <Content Include="DSC\ADConnect.ps1" />
@@ -44,4 +46,9 @@
     <None Include="nestedtemplates\vnet.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties azuredeploy_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
