@@ -33,6 +33,9 @@
     <None Include="DSC\ADConnect.zip" />
     <None Include="DSC\InstallADC.zip" />
     <None Include="nestedtemplates\installadconnect.json" />
+    <None Include="rds\azuredeploy.json" />
+    <None Include="rds\azuredeploy.parameters.json" />
+    <None Include="rds\Configuration.zip" />
     <None Include="vpn-s2s-deploy.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
