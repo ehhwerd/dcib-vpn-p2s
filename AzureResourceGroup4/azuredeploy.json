@@ -43,7 +43,7 @@
       "metadata": {
         "description": "The size of VM to use"
       },
-      "defaultValue": "Standard_D2_v2",
+      "defaultValue": "Standard_A2_v2",
       "allowedValues": [
         "Standard_A0",
         "Standard_A1_v2",
