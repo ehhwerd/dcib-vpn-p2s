@@ -22,7 +22,7 @@
     },
     "vmSize": {
       "type": "string",
-      "defaultValue": "Standard_A2",
+      "defaultValue": "Standard_A2v2",
       "metadata": {
         "description": "The size of the virtual machines"
       }
@@ -76,7 +76,7 @@
     "storageAccountName": "[concat(uniquestring(resourceGroup().id, deployment().name))]",
     "imagePublisher": "MicrosoftVisualStudio",
     "imageOffer": "windows",
-    "windowsOSVersion": "10-Enterprise-N",
+    "windowsOSVersion": "2016-Datacenter",
     "apiVersion": "2015-06-15",
     "nicName": "[concat(parameters('dnsLabelPrefix'),'Nic')]",
     "publicIPName": "[concat(parameters('dnsLabelPrefix'),'Pip')]",
