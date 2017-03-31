@@ -41,6 +41,7 @@
     <None Include="rds\azuredeploy.json" />
     <None Include="rds\azuredeploy.parameters.json" />
     <None Include="rds\Configuration.zip" />
+    <None Include="README.md" />
     <None Include="vpn-s2s-deploy.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
