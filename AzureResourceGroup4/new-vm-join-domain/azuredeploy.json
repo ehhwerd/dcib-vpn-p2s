@@ -74,8 +74,8 @@
   },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id, deployment().name))]",
-    "imagePublisher": "MicrosoftVisualStudio",
-    "imageOffer": "windows",
+    "imagePublisher": "MicrosoftWindowsServer",
+    "imageOffer": "WindowsServer",
     "windowsOSVersion": "2016-Datacenter",
     "apiVersion": "2015-06-15",
     "nicName": "[concat(parameters('dnsLabelPrefix'),'Nic')]",
