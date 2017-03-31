@@ -49,7 +49,7 @@
         },
         "dhcpOptions": {
           "dnsServers": 
-            "[parameters('DNSServerAddress')]" 
+            "parameters('DNSServerAddress')" 
 
           
         },
