@@ -3,16 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "adminUsername": {
-      "value": "edwardadmin"
+      "value": "demouser"
     },
     "domainName": {
-      "value": "edwardsdomain.local"
+      "value": "corp.testedsdomain.com"
     },
     "dnsPrefix": {
-      "value": "edwardsdomain"
+      "value": "testedsdomain"
     },
       "adminPassword": {
-          "value": "Passw0rd1234!"
+          "value": "demo@pass123"
       }
   }
 }
