@@ -35,7 +35,7 @@
     <None Include="json.json" />
     <None Include="nestedtemplates\installadconnect.json" />
     <None Include="new-vm-join-domain\.ci_skip" />
-    <None Include="new-vm-join-domain\azuredeploy.json" />
+    <None Include="new-vm-join-domain\new-vm-join-domain.json" />
     <None Include="new-vm-join-domain\azuredeploy.parameters.json" />
     <None Include="new-vm-join-domain\metadata.json" />
     <None Include="new-vm-join-domain\README.md" />
