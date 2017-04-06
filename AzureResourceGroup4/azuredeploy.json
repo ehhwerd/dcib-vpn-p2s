@@ -191,7 +191,7 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[variables('adNicIPAddress')[0]]",
+              "privateIPAddress": "[variables('adNicIPAddress')]",
               "subnet": {
                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('adSubnetName'))]"
               },
