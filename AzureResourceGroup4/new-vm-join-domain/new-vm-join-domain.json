@@ -168,7 +168,8 @@
               "name": "[concat(parameters('dnsLabelPrefix'), '-data-disk')]",
               "caching": "None",
               "createOption": "Empty",
-              "diskSizeGB": "1023"
+              "diskSizeGB": "1023",
+              "lun": 0
             }
           ]
         },
