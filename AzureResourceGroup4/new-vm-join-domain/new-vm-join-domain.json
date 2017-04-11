@@ -134,7 +134,7 @@
       }
     },
     {
-      "apiVersion": "[variables('apiVersion')]",
+      "apiVersion": " 2017-03-30",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('dnsLabelPrefix')]",
       "location": "[resourceGroup().location]",
