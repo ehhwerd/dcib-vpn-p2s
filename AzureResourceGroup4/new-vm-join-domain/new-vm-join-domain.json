@@ -157,22 +157,16 @@
           },
           "osDisk": {
             "name": "osdisk",
-            "vhd": {
-              "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/vhds/',parameters('dnsLabelPrefix'), 'disk0.vhd')]"
-            },
             "caching": "ReadWrite",
-            "createOption": "FromImage"
+            "createOption": "FromImage",
+            "diskSizeGB": "128"
           },
           "dataDisks": [
             {
-              "name": "myvm-data-disk1",
-              "vhd": {
-                "Uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/vhds/',parameters('dnsLabelPrefix'), 'disk1.vhd')]"
-              },
+              "name": "[concat(parameters('dnsLabelPrefix'), '-data-disk')]",
               "caching": "None",
               "createOption": "Empty",
-              "diskSizeGB": "1000",
-              "lun": 0
+              "diskSizeGB": "1023"
             }
           ]
         },
